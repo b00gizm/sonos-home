@@ -17,9 +17,10 @@ items:
         imagePullPolicy: IfNotPresent
         ports:
           - {containerPort: 80}
+          - {containerPort: 443}
         readinessProbe:
           tcpSocket:
-            port: 80
+            port: 443
 
 - apiVersion: v1
   kind: Service
@@ -30,7 +31,11 @@ items:
       project: sonos-home
   spec:
     ports:
-    - port: 80
+    - name: http
+      port: 80
+      protocol: TCP
+    - name: https
+      port: 443
       protocol: TCP
     selector:
       name: nginx

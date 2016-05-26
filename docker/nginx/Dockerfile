@@ -10,6 +10,7 @@ RUN apt-get update \
 
 # Nginx configs
 COPY rootfs/etc/nginx/nginx.conf          /etc/nginx/nginx.conf
+COPY rootfs/etc/nginx/ssl/                /etc/nginx/ssl/
 COPY rootfs/etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 # Nginx start script
