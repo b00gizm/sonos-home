@@ -109,5 +109,5 @@ items:
       project: sonos-home
   type: Opaque
   data:
-    api-user: $(echo "${NGINX_BASIC_AUTH_USER}:${NGINX_BASIC_AUTH_PASS}" | base64)
+    api-user: $(echo -n "${NGINX_BASIC_AUTH_USER}:${NGINX_BASIC_AUTH_PASS}" | base64)
 
