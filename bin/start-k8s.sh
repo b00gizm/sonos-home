@@ -9,6 +9,14 @@ K8S_NAMESPACE=$PROJECT_NAME
 EXTERNAL_IP=${EXTERNAL_IP:-$(hostname -I | awk '{ print $1 }')}
 MAX_DURATION=${MAX_DURATION:-60}
 
+if [ ! -f ${DIR}/../.env ]; then
+  echo "[ERROR] Could not access ${DIR}/../.env"
+  echo "[ERROR] Please copy .env.example to .env and customize it for your needs"
+
+  exit 1;
+fi
+
+source ${DIR}/../.env
 source ${DIR}/../shell/helpers.sh
 
 # build base images

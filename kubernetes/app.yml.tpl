@@ -21,6 +21,14 @@ items:
         readinessProbe:
           tcpSocket:
             port: 443
+        volumeMounts:
+          - name: http-basic
+            mountPath: "/etc/http-basic"
+            readOnly: true
+    volumes:
+      - name: http-basic
+        secret:
+          secretName: nginx-basic-secret
 
 - apiVersion: v1
   kind: Service
@@ -91,3 +99,15 @@ items:
       port: 80
       targetPort: 5005
       protocol: TCP
+
+- apiVersion: v1
+  kind: Secret
+  metadata:
+    name: nginx-basic-secret
+    labels:
+      name: nginx-basic-secret
+      project: sonos-home
+  type: Opaque
+  data:
+    api-user: $(echo "${NGINX_BASIC_AUTH_USER}:${NGINX_BASIC_AUTH_PASS}" | base64)
+

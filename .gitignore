@@ -1,4 +1,5 @@
 docker/nginx/rootfs/etc/nginx/ssl/*
 kubernetes/app.yml
+.env
 !.gitkeep
 
